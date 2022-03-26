@@ -10,6 +10,10 @@ INC=-Fu./Units #-Fu./
 $(patsubst %.pas,%,$(wildcard *.pas)):
 	fpc $(FLAGS) $(INC) $@.pas -o$@.bin
 
+RUN=run_
+$(patsubst %.pas,$(RUN)%,$(wildcard *.pas)):
+	$(subst $(RUN),./,$@).bin
+
 .PHONY: clean all
 
 all: $(patsubst %.pas,%.bin,$(wildcard *.pas))
